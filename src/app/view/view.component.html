@@ -1,0 +1,19 @@
+<div class="container d-flex flex-row-reverse mt-2"><i routerLink="" class="fa-solid fa-house btn"></i></div>
+<section class="py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="row gx-4 gx-lg-5 align-items-center">
+            <div class="col-md-6">
+                <img class="img-fluid rounded shadow" width="480px" height="300px" [src]="product.image" alt="..." /></div>
+            <div class="col-md-6">
+                <div class="small mb-1">RID: {{product.id}}</div>
+                <h1 class="display-5 fw-bolder">{{product.name}}</h1>
+                <div class="fs-5 mb-5">
+                    <span class="fw-bolder text-danger">Rating :{{product.rating}}</span>
+                    <span class="fw-bolder text-warning ms-5">Reviews :{{product.reviewCount}}</span>
+                </div>
+                <p class="lead"> <b>Ingredients :</b>{{product.ingredients}}</p>
+                <p class="lead"> <b>Instructions :</b>{{product.instructions}}</p>
+            </div>
+        </div>
+    </div>
+</section>

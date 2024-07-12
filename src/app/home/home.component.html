@@ -1,0 +1,54 @@
+<div class="container-fluid">
+    <div class="row">        
+        <div class="col">
+            <div class="mt-5 d-flex justify-content-evenly">
+                <div class="d-flex align-items-center fs-5">
+                    <span class="'fw-bolder">Search</span>
+                    <input [(ngModel)]="searchKey" style="width: 500px;" type="text" class="form-control ms-3" placeholder="Search by username">
+                </div>
+                <!--Dropdown-->
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Sort
+                    </button>
+                    <ul class="dropdown-menu">
+                      <li><button (click)="setSortType('Lunch')" class="dropdown-item" >Lunch</button></li>
+                      <li><button (click)="setSortType('Dinner')" class="dropdown-item" >Dinner</button></li>
+                      <li><button (click)="setSortType('Snacks')" class="dropdown-item" >Snacks, Dessert</button></li>
+                      <li><button (click)="setSortType('Appetizer')"class="dropdown-item" >Appetizer</button></li>
+                      <li><button (click)="setSortType('Breakfast')"class="dropdown-item" >Breakfast</button></li>
+                      <li><button (click)="setSortType('Beverage')"class="dropdown-item" >Beverage</button></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="container px-4 px-lg-5 mt-5">
+                <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                    <div *ngFor='let recipes of allRecipes | search :searchKey | sortPipe:sortType | paginate: { itemsPerPage: 8, currentPage: p }; let i = index' class="col mb-5">
+                        <div class="card h-100 p-2 bg-dark">
+                            <!-- Product image-->
+                            <img height="250px" width="280px" style="cursor: pointer;" routerLink="/{{recipes.id}}/view" class="card-img-top" [src]="recipes.image" alt="..." />
+                            <!-- Product details-->
+                            <div class="card-body p-4">
+                                <div class="text-center">
+                                    <!-- Product name-->
+                                    <h5 class="fw-bolder text-light">{{recipes.name}}</h5>
+                                    <!-- Product price-->
+                                    <h6 class=" text-light"><h5 class="fw-bolder">{{recipes.cuisine}}</h5></h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="(allRecipes | search:searchKey).length==0" class="fw-bolder text-danger">
+                        No recipes found
+                    </div> 
+                </div>
+                <div class="mt-2 text-center">
+                    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                </div>
+            </div>
+            <div class="container ms-3 me-3 d-flex justify-content-between mt-5 mb-5">
+                
+            </div>
+        </div>
+    </div>
+</div>
